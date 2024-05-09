@@ -78,9 +78,8 @@ char *get_file_path(char *file_name)
 
         if (slash_checker(file_name) &&
 			access(file_name, X_OK) == 0)
-        {
                 return (strdup(file_name));
-        }
+
         full_path = get_file_loc(path, file_name);
 
         return (full_path);
