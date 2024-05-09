@@ -46,5 +46,9 @@ char *get_file_loc(char *path, char *file_name)
 			perror("Error: allocation of the memory is failed");
 			exit(EXIT_FAILURE);
 		}
+		strcpy(path_buffer, token);
+		strcat(path_buffer, "/");
+		strcat(path_buffer, file_name);
+		strcat(path_buffer, "\0");
 	}
 }
