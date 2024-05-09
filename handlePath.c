@@ -50,5 +50,13 @@ char *get_file_loc(char *path, char *file_name)
 		strcat(path_buffer, "/");
 		strcat(path_buffer, file_name);
 		strcat(path_buffer, "\0");
+
+		if (stat(path_buffer, &file_path) == 0 && access(path_buffer, X_OK) == 0)
+		{
+			free(path_copy);
+			return (path_buffer);
+		}
+		token = strtok(NULL, ":");
 	}
+
 }
