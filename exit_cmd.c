@@ -1,12 +1,13 @@
 #include "main.h"
 
 /**
- * exit_cmd - handle the exit status
+ * shell_exit - handle the exit status
  * @status: status code
  **/
 
-void exit_cmd(int status)
+void shell_exit(int status)
 {
+
 	if (WIFEXITED(status))
 		exit(WEXITSTATUS(status));
 	else
