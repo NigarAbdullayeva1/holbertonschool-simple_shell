@@ -13,6 +13,7 @@
 #include <unistd.h>
 
 extern char **environ;
-void execute_command(char *cmd);
+int execute_cmd(char *cmd, char *argv[]);
 int slash_checker(const char *str);
+
 #endif
