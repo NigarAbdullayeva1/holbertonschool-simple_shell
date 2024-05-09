@@ -20,4 +20,5 @@ char *get_file_path(char *file_name);
 void print_env(void);
 void shell_exit(int status);
 char *_getenv(const char *name);
+int process_line(char *line, char *args[]);
 #endif
