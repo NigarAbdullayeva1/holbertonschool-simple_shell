@@ -1,0 +1,58 @@
+.TH SIMPLE_SHELL 1 "April 2024" "version 1.0" "Simple Shell Project"
+
+.SH NAME
+hsh Simple Shell \-  command language interpreter
+
+.SH SYNOPSIS
+.B shell_program
+
+.SH DESCRIPTION
+The shell_program is a basic shell implementation that provides a command-line interface for executing commands. It reads input from the user, parses commands, and executes them in separate processes.
+
+.SH OPTIONS
+No command-line options are supported.
+
+.SH USAGE / COMPILATION
+All files are to be compiled using "gcc -Wall -Werror -Wextra -pedantic *.c -o hsh"
+
+.SH RETURN VALUE
+The shell_program returns 0 upon successful execution. Error codes might be returned if there are issues with command execution.
+
+.SH COMMANDS
+The simple-shell supports the following built-in commands:
+
+.BR exit
+Exit the simple-shell. If a status is provided, it will be used as the exit status.
+
+.BR env
+Prints the current environment.
+
+.SH EXAMPLES
+.PP
+.PP
+$ ./hsh
+.PP
+##---> /bin/ls
+.PP
+hsh main.c shell.c
+.PP
+##---> exit
+.PP
+$
+.PP
+.PP
+
+.SH SEE ALSO
+Other related commands or programs.
+
+.SH BUGS
+There may be potential errors or problems with input handling.
+
+.SH REPORTING BUGS
+Report bugs to the author.
+
+.SH COPYRIGHT
+This is free software.
+
+.SH AUTHORS
+This manual page was written for the Simple Shell Project by Fidan Huseynova and Nigar Abdullayeva.
