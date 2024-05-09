@@ -7,12 +7,10 @@
 
 char *getline(void)
 {
-	char *input_buffer;
-	size_t buf_size;
+	char *input_buffer = NULL;
+	size_t buf_size = 0;
 	ssize_t nread;
 
-	input_buffer = NULL;
-	buf_size = 0;
 	nread = getline(&input_buffer, &buf_size, stdin);
 
 	if (nread == -1)
