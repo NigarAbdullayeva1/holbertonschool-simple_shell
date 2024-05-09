@@ -17,11 +17,9 @@ int process_line(char *line, char *args[])
 	token = strtok(line, " \n");
 	while (token)
 	{
-		if(line !=NULL)
-		{args[num_tokens] = token;
+		args[num_tokens] = token;
 		token = strtok(NULL, " \n");
 		num_tokens++;
-		}
 	}
 	args[num_tokens] = NULL;
 	return (num_tokens);
