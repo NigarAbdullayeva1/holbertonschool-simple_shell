@@ -14,7 +14,6 @@ int slash_checker(const char *str)
 	return (0);
 }
 
-
 /**
  * get_file_loc - get the executable path of the file
  * @path: full path variable
@@ -22,12 +21,15 @@ int slash_checker(const char *str)
  *
  * Return: full path to the executable file
  **/
+
 char *get_file_loc(char *path, char *file_name)
 {
 	char *path_copy, *token;
 	struct stat file_path;
 	char *path_buffer = NULL;
 
+	if (!path)
+		return (NULL);
 
 	path_copy = strdup(path);
 	token = strtok(path_copy, ":");
@@ -62,5 +64,4 @@ char *get_file_loc(char *path, char *file_name)
 	if (path_buffer)
 		free(path_buffer);
 	return (NULL);
-
 }
