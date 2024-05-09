@@ -65,3 +65,22 @@ char *get_file_loc(char *path, char *file_name)
 		free(path_buffer);
 	return (NULL);
 }
+/**
+ * get_file_path - get the full path of the file
+ * @file_name: argument entered by user
+ *
+ * Return: The full path
+ **/
+char *get_file_path(char *file_name)
+{
+        char *path = _getenv("PATH");
+        char *full_path;
+
+        if (slash_checker(file_name) == 0)
+        {
+                return (strdup(file_name));
+        }
+        full_path = get_file_loc(path, file_name);
+
+        return (full_path);
+}
