@@ -15,5 +15,5 @@
 extern char **environ;
 int execute_cmd(char *cmd, char *argv[]);
 int slash_checker(const char *str);
-void exit_cmd(int status);
+char *get_file_path(char *file_name);
 #endif
