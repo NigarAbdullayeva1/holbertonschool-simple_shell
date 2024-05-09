@@ -20,9 +20,5 @@ int handle_builtin_commands(char *cmd, char **args, int status)
 		print_env();
 		return (1);
 	}
-	if (strncmp(name, environ[i], len) == 0 &&
-			environ[i][len] == '=')
-		{
-			return (&environ[i][len + 1]);
-		}
+	return (0);
 }
