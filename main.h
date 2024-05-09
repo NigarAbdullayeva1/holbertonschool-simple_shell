@@ -15,5 +15,5 @@
 extern char **environ;
 int execute_cmd(char *cmd, char *argv[]);
 int slash_checker(const char *str);
-
+void exit_cmd(int status);
 #endif
