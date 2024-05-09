@@ -15,4 +15,14 @@ int handle_builtin_commands(char *cmd, char **args, int status)
 		free(cmd);
 		shell_exit(status);
 	}
+	else if (strcmp(args[0], "env") == 0)
+	{
+		print_env();
+		return (1);
+	}
+	if (strncmp(name, environ[i], len) == 0 &&
+			environ[i][len] == '=')
+		{
+			return (&environ[i][len + 1]);
+		}
 }
