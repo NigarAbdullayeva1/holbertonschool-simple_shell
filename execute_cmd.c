@@ -1,54 +1,49 @@
 #include "main.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
 
-void _err(char *args[])
+/**
+ * execute_cmd - executes a command
+ * @cmd: the command to execute
+ * @argv: the arguments of command
+ * Return: 0 on success, 1 on failure
+ */
+int execute_cmd(char *cmd, char *argv[])
 {
-    fprintf(stderr, "%s: command not found\n", args[0]);
-    perror("");
-    free(args[0]);
-    exit(98);
-}
+	int status = 0, num_args;
+	char *args[10];
+	pid_t child_pid;
+	char *shell_name, *path;
 
-void exec(char **args, char *input)
-{
-    int status;
-    pid_t childPid = 0;
+	shell_name = argv[0];
+	num_args = process_line(cmd, args);
 
-    struct stat st;
-    if (stat(args[0], &st) == -1) {
-        _err(args);
-    }
+	if (num_args == 0)
+		return (127);
+	handle_builtin_commands(cmd, args, status);
+	path = get_file_path(args[0]);
 
-    if (!S_ISREG(st.st_mode) || (st.st_mode & S_IXUSR) == 0) {
-        _err(args);
-    }
+	if (!path)
+	{
+		fprintf(stderr, "%s: 1: %s: not found\n", shell_name, cmd);
+		free(cmd);
+		exit(127);
+	}
+	child_pid = fork();
 
-    childPid = fork();
-
-    if (childPid == -1)
-    {
-        perror("fork\n");
-        free(input);
-        free(args[0]);
-        exit(EXIT_FAILURE);
-    }
-    else if (childPid == 0)
-    {
-        execve(args[0], args, environ);
-        perror(args[0]);
-        free(args[0]);
-        exit(EXIT_FAILURE);
-    }
-    else
-    {
-        wait(&status);
-        if (WIFEXITED(status))
-        {
-            free(args[0]);
-            free(input);
-            exit(WEXITSTATUS(status));
-        }
-    }
+	if (child_pid == -1)
+	{
+		perror("Error: failed to create");
+		free(cmd);
+		exit(1);
+	}
+	if (child_pid == 0)
+	{
+		if (execve(path, args, NULL) == -1)
+			return (2);
+	}
+	else
+	{
+		wait(&status);
+	}
+	free(path);
+	return (0);
 }
