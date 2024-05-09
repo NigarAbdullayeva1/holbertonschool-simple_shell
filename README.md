@@ -74,3 +74,19 @@ $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 ```
 
+## BUILTINS
+
+- exit [STATUS]: Exit the shell with an optional status.
+- env: Display environment variables.
+- setenv [VARIABLE] [VALUE]: Initialize or create an environment variable.
+- unsetenv [VARIABLE]: Remove an environment variable.
+- cd [DIRECTORY] | [OPTION]: Change directory.
+- alias [name [='value'] ...]: Support for aliases.
+- help [BUILTIN]: Display help for built-in commands.
+- history: Display command history.
+
+
+## Authors
+
+- Fidan Hüseynova- [Github]https://github.com/fidanhuseynova04
+- Nigar Abdullayeva- [Github]https://github.com/NigarAbdullayeva1/
