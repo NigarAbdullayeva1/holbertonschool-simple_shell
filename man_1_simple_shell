@@ -29,18 +29,19 @@ Prints the current environment.
 
 .SH EXAMPLES
 .PP
+.B julien@ubuntu:~/shell$ ./hsh
+#cisfun$ ls
+./shell: No such file or directory
+#cisfun$ /bin/ls
+barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell.c  stat.c         wait
+env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     stat test_scripting.sh  wait.c
+#cisfun$ exit
+#cisfun$ julien@ubuntu:~/shell$
 .PP
-$ ./hsh
-.PP
-##---> /bin/ls
-.PP
-hsh main.c shell.c
-.PP
-##---> exit
-.PP
-$
-.PP
-.PP
+.B julien@ubuntu:~/shell$ echo "/bin/ls" | ./hsh
+barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell.c  stat.c         wait
+env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     stat test_scripting.sh  wait.c
+.B julien@ubuntu:~/shell$
 
 .SH SEE ALSO
 Other related commands or programs.
