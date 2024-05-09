@@ -1,16 +1,18 @@
 #include "main.h"
 
 /**
- * getline - delimited string input
- * Return: returns pointer to getted input string
- */
+* read_input - reads user input
+* Return: returns pointer to getted input string
+*/
 
-char *getline(void)
+char *read_input(void)
 {
-	char *input_buffer = NULL;
-	size_t buf_size = 0;
+	char *input_buffer;
+	size_t buf_size;
 	ssize_t nread;
 
+	input_buffer = NULL;
+	buf_size = 0;
 	nread = getline(&input_buffer, &buf_size, stdin);
 
 	if (nread == -1)
