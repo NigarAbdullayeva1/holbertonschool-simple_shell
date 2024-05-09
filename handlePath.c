@@ -28,8 +28,6 @@ char *get_file_loc(char *path, char *file_name)
 	struct stat file_path;
 	char *path_buffer = NULL;
 
-	if (!path)
-		return (NULL);
 
 	path_copy = strdup(path);
 	token = strtok(path_copy, ":");
@@ -41,6 +39,12 @@ char *get_file_loc(char *path, char *file_name)
 			free(path_buffer);
 			path_buffer = NULL;
 		}
-		return 0);
+		path_buffer = malloc(strlen(token) + strlen(file_name) + 2);
+
+		if (!path_buffer)
+		{
+			perror("Error: allocation of the memory is failed");
+			exit(EXIT_FAILURE);
+		}
 	}
 }
