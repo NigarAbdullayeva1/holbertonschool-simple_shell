@@ -69,7 +69,8 @@ When you work on a Holberton Shell project, it involves creating a simple shell 
 
 Your code will be compiled this way:
 
-'''
+```
 $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
-'''
+```
+
