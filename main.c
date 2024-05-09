@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		{
 			write(STDOUT_FILENO, "Xshell> ", 8);
 		}
-		input_buffer = getline();
+		input_buffer = read_input();
 		execute_cmd(input_buffer, argv);
 		free(input_buffer);
 	}
