@@ -1,46 +1,54 @@
 #include "main.h"
 
 /**
- * main - Main function
- *
+ * spacesCheck - check if str contain only space
+ * @str: string to check
+ * Return: 0 on success or 1 on failure
+ */
+
+int spacesCheck(const char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+/**
+ * main - main function for the shell
  * Return: 0 on success
  */
+
 int main(void)
 {
-	char *cmd = NULL;
-	size_t len = 0;
-	ssize_t n;
+	char *input = NULL;
+	char *args[64] = { NULL };
+	size_t inputSize = 0;
+	ssize_t inputRead;
 
-	if (isatty(STDIN_FILENO))
-		printf("> ");
-	while ((n = getline(&cmd, &len, stdin)) != -1)
+	while (1)
 	{
-		cmd[n - 1] = '\0';  /* Remove newline character */
-		/* Handle 'exit' command */
-		if (strcmp(cmd, "exit") == 0)
-		{
-			free(cmd);
-			exit(0);
-		}
-		/* Ignore special characters */
-		if (cmd[0] == '^')
-		{
-			free(cmd);
-			continue;
-		}
-		if (fork() == 0)
-		{
-			execute_command(cmd);
-			exit(0);
-		}
-		else
-			wait(NULL);
-		free(cmd);
-		cmd = NULL;
 		if (isatty(STDIN_FILENO))
-			printf("> ");
+		{
+			printf("$ ");
+			fflush(stdout);
+		}
+
+		inputRead = getline(&input, &inputSize, stdin);
+		if (inputRead == EOF)
+		{
+			free(input);
+			exit(0);
+		}
+
+		if (inputRead > 0 && input[inputRead - 1] == '\n')
+			input[inputRead - 1] = '\0';
+		if (spacesCheck(input) != 1)
+			tokenize(input, args);
 	}
-	if (isatty(STDIN_FILENO))
-		printf("\n");
+	free(input);
 	return (0);
 }
