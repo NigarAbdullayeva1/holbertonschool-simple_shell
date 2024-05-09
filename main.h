@@ -13,5 +13,5 @@
 #include <unistd.h>
 
 extern char **environ;
-
+void execute_command(char *cmd);
 #endif
