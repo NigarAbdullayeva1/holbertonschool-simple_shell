@@ -76,7 +76,8 @@ char *get_file_path(char *file_name)
         char *path = _getenv("PATH");
         char *full_path;
 
-        if (slash_checker(file_name) == 0)
+        if (slash_checker(file_name) &&
+			access(file_name) == 0)
         {
                 return (strdup(file_name));
         }
