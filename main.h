@@ -22,4 +22,5 @@ void shell_exit(int status);
 char *_getenv(const char *name);
 int process_line(char *line, char *args[]);
 int handle_builtin_commands(char *cmd, char **args, int status);
+char *getline(void);
 #endif
