@@ -8,10 +8,6 @@ void print_env(void)
 
 	while (*env != NULL)
 	{
-		if (environ[i][len] == 0)
-		{
-			return (&environ[i][len + 1]);
-		}
 		printf("%s\n", *env);
 		env++;
 	}
