@@ -1,54 +1,45 @@
 #include "main.h"
 
 /**
- * spacesCheck - check if str contain only space
- * @str: string to check
- * Return: 0 on success or 1 on failure
+ * execute_cmd - executes a command
+ * @cmd: the command to execute
+ * @argv: the arguments of command
+ * Return: 0 on success, 1 on failure
  */
-
-int spacesCheck(const char *str)
+int execute_cmd(char *cmd, char *argv[])
 {
-	while (*str)
+	int status = 0, num_args;
+	char *args[10];
+	pid_t child_pid;
+	char *shell_name, *path;
+
+	shell_name = argv[0];
+	num_args = process_line(cmd, args);
+
+	if (num_args == 0)
+		return (127);
+	handle_builtin_commands(cmd, args, status);
+	path = get_file_path(args[0]);
+
+	if (!path)
 	{
-		if (*str != ' ')
-			return (0);
-		str++;
+		fprintf(stderr, "%s: 1: %s: not found\n", shell_name, cmd);
+		free(cmd);
+		exit(127);
 	}
-	return (1);
-}
+	child_pid = fork();
 
-/**
- * main - main function for the shell
- * Return: 0 on success
- */
-
-int main(void)
-{
-	char *input = NULL;
-	char *args[64] = { NULL };
-	size_t inputSize = 0;
-	ssize_t inputRead;
-
-	while (1)
+	if (child_pid == -1)
 	{
-		if (isatty(STDIN_FILENO))
-		{
-			printf("$ ");
-			fflush(stdout);
-		}
-
-		inputRead = getline(&input, &inputSize, stdin);
-		if (inputRead == EOF)
-		{
-			free(input);
-			exit(0);
-		}
-
-		if (inputRead > 0 && input[inputRead - 1] == '\n')
-			input[inputRead - 1] = '\0';
-		if (spacesCheck(input) != 1)
-			tokenize(input, args);
+		perror("Error: failed to create");
+		free(cmd);
+		exit(1);
 	}
-	free(input);
+	
+	else
+	{
+		wait(&status);
+	}
+	free(path);
 	return (0);
 }
