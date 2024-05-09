@@ -15,6 +15,10 @@ char *getline(void)
 
 	if (nread == -1)
 	{
+		if (isatty(STDIN_FILENO))
+		{
+			write(STDOUT_FILENO, "\n", 2);
+		}
 		free(input_buffer);
 		exit(0);
 	}
