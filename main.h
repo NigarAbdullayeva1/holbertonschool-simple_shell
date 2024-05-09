@@ -19,4 +19,5 @@ char *get_file_loc(char *path, char *file_name);
 char *get_file_path(char *file_name);
 void print_env(void);
 void shell_exit(int status);
+char *_getenv(const char *name);
 #endif
