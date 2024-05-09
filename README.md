@@ -64,3 +64,11 @@ When you work on a Holberton Shell project, it involves creating a simple shell 
 *	No more than 5 functions per file
 *	All your header files should be include guarded
 *	Use system calls only when you need to (why?)
+
+## Compilation
+
+Your code will be compiled this way:
+
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
