@@ -1,7 +1,5 @@
 #include "main.h"
 
-char **path_var;
-
 /**
  * slash_checker - check the file nmae that it begins with slash or not
  * @str: str to be checked
